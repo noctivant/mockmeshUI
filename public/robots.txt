@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mockmesh.dev/sitemap.xml
+
+# Block build artefacts
+Disallow: /dist/
+Disallow: /.vite/

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ── Primary SEO ──────────────────────────────────────────────────── -->
+    <title>MockMesh — Mock AWS, Azure & Cloud APIs Locally | Free Python Library</title>
+    <meta name="description" content="MockMesh intercepts boto3, azure-sdk, Kafka, RabbitMQ and HTTP calls at transport level. Mock S3, DynamoDB, SQS, Cosmos DB, Service Bus and 40+ cloud services locally. Zero cost, zero credentials, millisecond latency. pip install mockmesh." />
+    <meta name="keywords" content="mock aws locally, mock boto3, mock azure sdk, mock dynamodb, mock s3 locally, mock sqs, local cloud mocking, python mocking library, mock kafka, mock rabbitmq, localstack alternative, moto alternative, aws testing without credentials, azure mock python, intercept botocore, mock cloud services, local development cloud, offline aws testing, mock azure blob storage, mock cosmos db, zero cost cloud testing, mock http requests python, pytest aws mock, mock secretsmanager, mock service bus, fake aws python" />
+    <link rel="canonical" href="https://mockmesh.dev/" />
+
+    <!-- ── Open Graph (Facebook, LinkedIn, Slack previews) ──────────────── -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content="https://mockmesh.dev/" />
+    <meta property="og:site_name"   content="MockMesh" />
+    <meta property="og:title"       content="MockMesh — Mock AWS, Azure & Cloud APIs Locally" />
+    <meta property="og:description" content="Intercept boto3, azure-sdk, Kafka and HTTP calls at transport level. 40+ cloud services mocked locally. Zero cost, zero credentials, real stateful behaviour. pip install mockmesh." />
+    <meta property="og:image"       content="https://mockmesh.dev/og-image.png" />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale"      content="en_US" />
+
+    <!-- ── Twitter / X Card ─────────────────────────────────────────────── -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:site"        content="@mockmesh" />
+    <meta name="twitter:title"       content="MockMesh — Mock AWS & Azure Locally in One Line" />
+    <meta name="twitter:description" content="pip install mockmesh · One initialize() call intercepts boto3, azure-sdk, Kafka, RabbitMQ & any HTTP endpoint. 40+ cloud services, real stateful storage, $0 cloud spend." />
+    <meta name="twitter:image"       content="https://mockmesh.dev/og-image.png" />
+
+    <!-- ── Robots & indexing ─────────────────────────────────────────────── -->
+    <meta name="robots"    content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="sitemap"    type="application/xml" href="/sitemap.xml" />
+
+    <!-- ── Authorship & publisher ───────────────────────────────────────── -->
+    <meta name="author"    content="MockMesh Contributors" />
+    <meta name="copyright" content="MockMesh Contributors" />
+
+    <!-- ── Structured Data — SoftwareApplication ─────────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "MockMesh",
+      "url": "https://mockmesh.dev",
+      "description": "MockMesh is a Python library that intercepts AWS, Azure, Kafka, RabbitMQ and HTTP calls at transport level, providing real stateful local mocking of 40+ cloud services with zero credentials and zero cost.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Linux, macOS, Windows",
+      "programmingLanguage": "Python",
+      "softwareVersion": "1.0.0",
+      "license": "https://opensource.org/licenses/MIT",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "MockMesh Contributors",
+        "url": "https://mockmesh.dev"
+      },
+      "downloadUrl": "https://pypi.org/project/mockmesh/",
+      "codeRepository": "https://github.com/your-org/mockmesh",
+      "keywords": "mock aws, mock azure, boto3 mock, local cloud, python testing, dynamodb mock, s3 mock, kafka mock",
+      "featureList": [
+        "Mock AWS S3, DynamoDB, SQS, SNS, SecretsManager, SSM, ElastiCache and 10+ more services",
+        "Mock Azure Blob Storage, Cosmos DB, Service Bus, Key Vault and more",
+        "Mock Kafka producers and consumers (confluent-kafka and kafka-python)",
+        "Mock RabbitMQ via pika BlockingConnection",
+        "Mock any HTTP endpoint via requests and urllib interceptors",
+        "4-tier response resolution: explicit folder, auto-detect, storage, built-in defaults",
+        "Real stateful file-backed storage — items actually persist between calls",
+        "Zero credentials required — no IAM, no STS, no service accounts",
+        "Zero Docker dependency — pure Python, runs anywhere",
+        "pytest integration with session and per-test isolation"
+      ]
+    }
+    </script>
+
+    <!-- ── Structured Data — FAQPage ────────────────────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I mock AWS services locally with Python?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Install MockMesh with pip install mockmesh, then call mockmesh.initialize() at the top of your script. All boto3 calls (S3, DynamoDB, SQS, etc.) are automatically intercepted at the botocore transport layer — no credential setup, no Docker, no code changes to your application."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between MockMesh and LocalStack?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "LocalStack runs actual AWS service emulators in Docker containers. MockMesh intercepts at the Python SDK transport layer — no Docker required. MockMesh also supports Azure, Kafka, RabbitMQ and any HTTP endpoint in the same library, with a 4-tier response resolution system and real file-backed stateful storage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does MockMesh support Azure SDK mocking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. MockMesh patches azure-core's RequestsTransport.send at the transport level, intercepting all Azure SDK calls including Blob Storage, Cosmos DB, Service Bus, Key Vault, Redis, SQL, AKS, and ACI."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I override responses for specific AWS operations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Create a folder with files named aws.json, azure.json, etc. (matching the built-in defaults naming) and pass the folder path via responses_path to mockmesh.initialize(). MockMesh deep-merges your overrides on top of built-in defaults — only include the operations you want to change. Alternatively, place the files in your .mockmesh/ workspace and they are picked up automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is MockMesh stateful?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Storage-backed operations (S3, DynamoDB, SQS, Cosmos DB, Service Bus, Key Vault, SSM, SecretsManager, ElastiCache) use real local file-backed stores. A DynamoDB PutItem actually writes to .mockmesh/nosql/TableName.json. A subsequent GetItem reads from that same file. Your application cannot distinguish this from the real cloud."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- ── Structured Data — BreadcrumbList ─────────────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "MockMesh", "item": "https://mockmesh.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Features", "item": "https://mockmesh.dev/#features" },
+        { "@type": "ListItem", "position": 3, "name": "Services", "item": "https://mockmesh.dev/#services" },
+        { "@type": "ListItem", "position": 4, "name": "Install",  "item": "https://mockmesh.dev/#install" }
+      ]
+    }
+    </script>
+
+    <!-- ── Favicon ───────────────────────────────────────────────────────── -->
+    <link rel="icon"             type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180"      href="/favicon.svg" />
+
+    <!-- ── Preconnect hints ──────────────────────────────────────────────── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://pypi.org" />
+
+    <!-- ── Theme color ───────────────────────────────────────────────────── -->
+    <meta name="theme-color" content="#0a0a0f" />
+    <meta name="color-scheme" content="dark" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
