@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- ── Primary SEO ──────────────────────────────────────────────────── -->
-    <title>MockMesh — Mock AWS, Azure & Cloud APIs Locally | Free Python Library</title>
-    <meta name="description" content="MockMesh intercepts boto3, azure-sdk, Kafka, RabbitMQ and HTTP calls at transport level. Mock S3, DynamoDB, SQS, Cosmos DB, Service Bus and 40+ cloud services locally. Zero cost, zero credentials, millisecond latency. pip install mockmesh." />
-    <meta name="keywords" content="mock aws locally, mock boto3, mock azure sdk, mock dynamodb, mock s3 locally, mock sqs, local cloud mocking, python mocking library, mock kafka, mock rabbitmq, localstack alternative, moto alternative, aws testing without credentials, azure mock python, intercept botocore, mock cloud services, local development cloud, offline aws testing, mock azure blob storage, mock cosmos db, zero cost cloud testing, mock http requests python, pytest aws mock, mock secretsmanager, mock service bus, fake aws python" />
+    <title>MockMesh — Mock AWS, Azure, GCP & Cloud APIs Locally | Python Library</title>
+    <meta name="description" content="MockMesh intercepts boto3, azure-sdk, google-cloud, pymongo, redis, SQL drivers, Kafka, RabbitMQ and HTTP calls at transport level. Mock S3, DynamoDB, SQS, Cosmos DB, Cloud Storage, Firestore, BigQuery, MongoDB, Redis, PostgreSQL and 60+ cloud services locally. Zero cost, zero credentials, millisecond latency. pip install mockmesh." />
+    <meta name="keywords" content="mock aws locally, mock boto3, mock azure sdk, mock gcp, mock google cloud, mock dynamodb, mock s3 locally, mock sqs, mock mongodb, mock redis, mock postgresql, mock mysql, local cloud mocking, python mocking library, mock kafka, mock rabbitmq, localstack alternative, moto alternative, aws testing without credentials, azure mock python, gcp mock python, intercept botocore, mock cloud services, local development cloud, offline aws testing, mock azure blob storage, mock cosmos db, mock firestore, mock bigquery, zero cost cloud testing, mock http requests python, pytest aws mock, mock secretsmanager, mock service bus, mock pymongo, mock redis-py, fake aws python" />
     <link rel="canonical" href="https://mockmesh.dev/" />
 
     <!-- ── Open Graph (Facebook, LinkedIn, Slack previews) ──────────────── -->
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content="https://mockmesh.dev/" />
     <meta property="og:site_name"   content="MockMesh" />
-    <meta property="og:title"       content="MockMesh — Mock AWS, Azure & Cloud APIs Locally" />
-    <meta property="og:description" content="Intercept boto3, azure-sdk, Kafka and HTTP calls at transport level. 40+ cloud services mocked locally. Zero cost, zero credentials, real stateful behaviour. pip install mockmesh." />
+    <meta property="og:title"       content="MockMesh — Mock AWS, Azure, GCP & Cloud APIs Locally" />
+    <meta property="og:description" content="Intercept boto3, azure-sdk, google-cloud, pymongo, redis, SQL, Kafka and HTTP calls at transport level. 60+ cloud services mocked locally. Zero cost, zero credentials, real stateful behaviour. pip install mockmesh." />
     <meta property="og:image"       content="https://mockmesh.dev/og-image.png" />
     <meta property="og:image:width"  content="1200" />
     <meta property="og:image:height" content="630" />
@@ -24,8 +24,8 @@
     <!-- ── Twitter / X Card ─────────────────────────────────────────────── -->
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:site"        content="@mockmesh" />
-    <meta name="twitter:title"       content="MockMesh — Mock AWS & Azure Locally in One Line" />
-    <meta name="twitter:description" content="pip install mockmesh · One initialize() call intercepts boto3, azure-sdk, Kafka, RabbitMQ & any HTTP endpoint. 40+ cloud services, real stateful storage, $0 cloud spend." />
+    <meta name="twitter:title"       content="MockMesh — Mock AWS, Azure & GCP Locally in One Line" />
+    <meta name="twitter:description" content="pip install mockmesh · One initialize() call intercepts boto3, azure-sdk, google-cloud, pymongo, redis, SQL, Kafka, RabbitMQ & any HTTP endpoint. 60+ services, real stateful storage, $0 cloud spend." />
     <meta name="twitter:image"       content="https://mockmesh.dev/og-image.png" />
 
     <!-- ── Robots & indexing ─────────────────────────────────────────────── -->
@@ -44,12 +44,12 @@
       "@type": "SoftwareApplication",
       "name": "MockMesh",
       "url": "https://mockmesh.dev",
-      "description": "MockMesh is a Python library that intercepts AWS, Azure, Kafka, RabbitMQ and HTTP calls at transport level, providing real stateful local mocking of 40+ cloud services with zero credentials and zero cost.",
+      "description": "MockMesh is a Python library that intercepts AWS, Azure, GCP, SQL, MongoDB, Redis, Kafka, RabbitMQ and HTTP calls at transport level, providing real stateful local mocking of 60+ cloud services with zero credentials and zero cost.",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Linux, macOS, Windows",
       "programmingLanguage": "Python",
-      "softwareVersion": "1.0.0",
-      "license": "https://opensource.org/licenses/MIT",
+      "softwareVersion": "0.0.1",
+      "license": "https://spdx.org/licenses/BSL-1.1.html",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -62,14 +62,19 @@
       },
       "downloadUrl": "https://pypi.org/project/mockmesh/",
       "codeRepository": "https://github.com/your-org/mockmesh",
-      "keywords": "mock aws, mock azure, boto3 mock, local cloud, python testing, dynamodb mock, s3 mock, kafka mock",
+      "keywords": "mock aws, mock azure, mock gcp, boto3 mock, local cloud, python testing, dynamodb mock, s3 mock, kafka mock, mock mongodb, mock redis, mock postgresql",
       "featureList": [
-        "Mock AWS S3, DynamoDB, SQS, SNS, SecretsManager, SSM, ElastiCache and 10+ more services",
-        "Mock Azure Blob Storage, Cosmos DB, Service Bus, Key Vault and more",
+        "Mock 17 AWS services: S3, DynamoDB, SQS, SNS, SecretsManager, SSM, RDS, ElastiCache, Lambda, and more",
+        "Mock 13 Azure services: Blob Storage, Cosmos DB, Service Bus, Key Vault, Event Hubs, and more",
+        "Mock 8 GCP services: Cloud Storage, Firestore, Pub/Sub, Secret Manager, BigQuery, Spanner, GKE, Cloud Run",
+        "Mock SQL databases via psycopg2, pymysql, asyncpg, aiomysql with SQLite backend",
+        "Mock MongoDB (pymongo) and Redis (redis-py) with in-memory stores",
         "Mock Kafka producers and consumers (confluent-kafka and kafka-python)",
         "Mock RabbitMQ via pika BlockingConnection",
         "Mock any HTTP endpoint via requests and urllib interceptors",
         "4-tier response resolution: explicit folder, auto-detect, storage, built-in defaults",
+        "Auto-detect installed providers — zero configuration needed",
+        "Three fallback modes: mock, passthrough, error — with per-provider overrides",
         "Real stateful file-backed storage — items actually persist between calls",
         "Zero credentials required — no IAM, no STS, no service accounts",
         "Zero Docker dependency — pure Python, runs anywhere",
@@ -97,7 +102,7 @@
           "name": "What is the difference between MockMesh and LocalStack?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "LocalStack runs actual AWS service emulators in Docker containers. MockMesh intercepts at the Python SDK transport layer — no Docker required. MockMesh also supports Azure, Kafka, RabbitMQ and any HTTP endpoint in the same library, with a 4-tier response resolution system and real file-backed stateful storage."
+            "text": "LocalStack runs actual AWS service emulators in Docker containers. MockMesh intercepts at the Python SDK transport layer — no Docker required. MockMesh also supports Azure, GCP, SQL databases, MongoDB, Redis, Kafka, RabbitMQ and any HTTP endpoint in the same library, with a 4-tier response resolution system, auto-detection, fallback modes, and real file-backed stateful storage."
           }
         },
         {
@@ -105,7 +110,7 @@
           "name": "Does MockMesh support Azure SDK mocking?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. MockMesh patches azure-core's RequestsTransport.send at the transport level, intercepting all Azure SDK calls including Blob Storage, Cosmos DB, Service Bus, Key Vault, Redis, SQL, AKS, and ACI."
+            "text": "Yes. MockMesh patches azure-core's RequestsTransport.send at the transport level, intercepting all Azure SDK calls including Blob Storage, Cosmos DB, Service Bus, Key Vault, Event Hubs, Storage Queue, Table Storage, App Configuration, and ARM-based services like SQL Database, Redis Cache, AKS, ACI, and Container Apps."
           }
         },
         {
@@ -121,7 +126,7 @@
           "name": "Is MockMesh stateful?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Storage-backed operations (S3, DynamoDB, SQS, Cosmos DB, Service Bus, Key Vault, SSM, SecretsManager, ElastiCache) use real local file-backed stores. A DynamoDB PutItem actually writes to .mockmesh/nosql/TableName.json. A subsequent GetItem reads from that same file. Your application cannot distinguish this from the real cloud."
+            "text": "Yes. Storage-backed operations (S3, DynamoDB, SQS, GCS, Cosmos DB, Service Bus, Key Vault, SSM, SecretsManager, ElastiCache) use real local file-backed stores. MongoDB and Redis use in-memory stores. SQL databases use a SQLite backend. A DynamoDB PutItem actually writes to .mockmesh/nosql/TableName.json. A subsequent GetItem reads from that same file. Your application cannot distinguish this from the real cloud."
           }
         }
       ]

@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import "../styles.css";
 
-const SPONSOR_URL = "https://github.com/sponsors/"; // fill in later
-
 export function Nav({ active, setActive }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -11,7 +9,7 @@ export function Nav({ active, setActive }) {
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
   }, []);
-  const pages = [["home","Home"],["features","Features"],["services","Services"],["install","Install"]];
+  const pages = [["home","Home"],["services","Services"],["docs","Docs"],["install","Install"]];
   return (
     <nav className={`nav ${scrolled?"nav-scrolled":""}`}>
       <div className="nav-logo" onClick={() => {setActive("home");setOpen(false);}}>
@@ -25,10 +23,6 @@ export function Nav({ active, setActive }) {
           </button>
         ))}
       </div>
-      <a href={SPONSOR_URL} target="_blank" rel="noopener noreferrer" className="nav-sponsor">
-        <span className="sponsor-heart">♥</span> Sponsor
-      </a>
-      <button className="nav-cta" onClick={() => {setActive("install");setOpen(false);}}>Get Started →</button>
       <button className="nav-burger" onClick={() => setOpen(o => !o)} aria-label="menu">
         <span/><span/><span/>
       </button>

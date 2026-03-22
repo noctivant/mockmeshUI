@@ -14,14 +14,14 @@ export function HomePage({ setActive }) {
           <br/><span className="title-sub">Your Cloud. Stateful. Local.</span>
         </h1>
         <p className="hero-desc">
-          MockMesh intercepts every outbound call your app makes — AWS, Azure, Kafka, RabbitMQ and any HTTP endpoint — and fulfils them locally with real stateful behaviour. No network. No credentials. No Docker. No cost.
+          MockMesh intercepts every outbound call your app makes — AWS, Azure, GCP, SQL databases, MongoDB, Redis, Kafka, RabbitMQ and any HTTP endpoint — and fulfils them locally with real stateful behaviour. No network. No credentials. No Docker. No cost.
         </p>
         <div className="hero-actions">
           <button className="btn-primary" onClick={() => setActive("install")}><span>Start Free</span><span className="btn-arrow">→</span></button>
           <button className="btn-ghost" onClick={() => setActive("services")}>Browse Services</button>
         </div>
         <div className="stats-row">
-          {[{v:"17",l:"AWS Services"},{v:"9+",l:"Azure Services"},{v:"$0",l:"Cloud Cost"},{v:"∞",l:"HTTP Targets"}].map(s => (
+          {[{v:"17",l:"AWS Services"},{v:"13",l:"Azure Services"},{v:"8",l:"GCP Services"},{v:"$0",l:"Cloud Cost"},{v:"6+",l:"DB Drivers"},{v:"∞",l:"HTTP Targets"}].map(s => (
             <div key={s.l} className="stat-card"><span className="stat-val">{s.v}</span><span className="stat-label">{s.l}</span></div>
           ))}
         </div>
@@ -50,7 +50,7 @@ export function HomePage({ setActive }) {
           <div className="solution-text">
             <div className="section-label">// the solution</div>
             <h2>Every call intercepted.<br/><span className="highlight">Real operation. Local file.</span></h2>
-            <p>A stateful local engine routes every boto3, azure-sdk, streaming, and external HTTP call to fast file-backed stores. Items are stored. Bytes are saved. Messages queue up. Your code is untouched. Your tests are instant.</p>
+            <p>A stateful local engine routes every boto3, azure-sdk, google-cloud, pymongo, redis, SQL driver, streaming, and external HTTP call to fast file-backed stores. Items are stored. Bytes are saved. Messages queue up. Queries execute. Your code is untouched. Your tests are instant.</p>
             <div className="how-it-works">
               {[
                 {step:"01",text:"SDK / HTTP client makes a call"},
@@ -98,33 +98,6 @@ export function HomePage({ setActive }) {
               ))}
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Coverage — centered */}
-      <section className="coverage-preview">
-        <div className="section-label">// service coverage</div>
-        <h2 className="section-title">17 AWS · 9 Azure · Kafka · RabbitMQ · Any HTTP target</h2>
-        <div className="coverage-strips">
-          {[
-            {label:"AWS Storage & Data",items:["DynamoDB","S3","SQS","SNS","Kinesis","RDS","Redshift"],color:"#ff9a3c"},
-            {label:"AWS Platform & AI",items:["Secrets Manager","CloudWatch","IAM","STS","Bedrock","Glue","Athena"],color:"#00ffc8"},
-            {label:"AWS DevOps",items:["ECR","CodeBuild","CloudFormation","Route53","ACM","Cognito","SES"],color:"#7c6aff"},
-            {label:"Azure Storage",items:["Blob Storage","CosmosDB","Table Storage","ADLS","Azure Files"],color:"#00b4ff"},
-            {label:"Azure Messaging & AI",items:["Service Bus","Event Hub","Key Vault","Azure OpenAI","Entra ID"],color:"#a78bfa"},
-            {label:"Azure Ops & Dev",items:["Azure Monitor","Container Registry","Cognitive Search","Data Factory","Azure ML"],color:"#ff6b6b"},
-          ].map(strip => (
-            <div key={strip.label} className="cov-strip" style={{"--strip-color":strip.color}}>
-              <span className="cov-label">{strip.label}</span>
-              <div className="cov-pills">
-                {strip.items.map(item => <span key={item} className="cov-pill">{item}</span>)}
-                <button className="cov-more" onClick={() => setActive("services")}>+ more →</button>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div style={{textAlign:"center",marginTop:"2.5rem"}}>
-          <button className="btn-ghost" onClick={() => setActive("services")}>View all 46 services with operations →</button>
         </div>
       </section>
 
