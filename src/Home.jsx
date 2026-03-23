@@ -8,22 +8,19 @@ export function HomePage({ setActive }) {
     <div className="page home-page">
       <ParticleCanvas/>
       <section className="hero">
-        <div className="hero-badge"><span className="badge-dot"/>4-tier local cloud · stateful storage · zero cost · zero Docker</div>
         <h1 className="hero-title">
           <GlitchText text="Mock"/><span className="title-mesh">Mesh</span>
-          <br/><span className="title-sub">Your Cloud. Stateful. Local.</span>
         </h1>
-        <p className="hero-desc">
-          MockMesh intercepts every outbound call your app makes — AWS, Azure, GCP, SQL databases, MongoDB, Redis, Kafka, RabbitMQ and any HTTP endpoint — and fulfils them locally with real stateful behaviour. No network. No credentials. No Docker. No cost.
-        </p>
+        <div className="solution-diagram hero-diagram">
+          <div className="diag-node src">Your App</div>
+          <div className="diag-arrow"><span className="diag-label">intercepted</span><div className="diag-line"/><span className="arrow-head">▶</span></div>
+          <div className="diag-node mm">MockMesh</div>
+          <div className="diag-arrow strike"><span className="diag-label">blocked ✕</span><div className="diag-line dashed"/><span className="arrow-head muted">▶</span></div>
+          <div className="diag-node cloud muted">Cloud / APIs</div>
+        </div>
         <div className="hero-actions">
           <button className="btn-primary" onClick={() => setActive("install")}><span>Start Free</span><span className="btn-arrow">→</span></button>
           <button className="btn-ghost" onClick={() => setActive("services")}>Browse Services</button>
-        </div>
-        <div className="stats-row">
-          {[{v:"17",l:"AWS Services"},{v:"13",l:"Azure Services"},{v:"8",l:"GCP Services"},{v:"$0",l:"Cloud Cost"},{v:"6+",l:"DB Drivers"},{v:"∞",l:"HTTP Targets"}].map(s => (
-            <div key={s.l} className="stat-card"><span className="stat-val">{s.v}</span><span className="stat-label">{s.l}</span></div>
-          ))}
         </div>
       </section>
 
@@ -42,39 +39,6 @@ export function HomePage({ setActive }) {
               <h3>{p.title}</h3><p>{p.desc}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="solution-banner">
-        <div className="solution-inner">
-          <div className="solution-text">
-            <div className="section-label">// the solution</div>
-            <h2>Every call intercepted.<br/><span className="highlight">Real operation. Local file.</span></h2>
-            <p>A stateful local engine routes every boto3, azure-sdk, google-cloud, pymongo, redis, SQL driver, streaming, and external HTTP call to fast file-backed stores. Items are stored. Bytes are saved. Messages queue up. Queries execute. Your code is untouched. Your tests are instant.</p>
-            <div className="how-it-works">
-              {[
-                {step:"01",text:"SDK / HTTP client makes a call"},
-                {step:"02",text:"botocore / requests / pika interceptor catches it"},
-                {step:"03",text:"Operation parsed from headers, URL, or method"},
-                {step:"04",text:"Tier 1: check responses_path folder (explicit overrides)"},
-                {step:"05",text:"Tier 2: check .mockmesh/ auto-detected folder"},
-                {step:"06",text:"Tier 3: check local storage (.mockmesh/ live data)"},
-                {step:"07",text:"Tier 4: return built-in default shape"},
-              ].map(h => (
-                <div key={h.step} className="how-step">
-                  <span className="how-num">{h.step}</span>
-                  <span className="how-text">{h.text}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="solution-diagram">
-            <div className="diag-node src">Your App</div>
-            <div className="diag-arrow"><span className="diag-label">intercepted</span><div className="diag-line"/><span className="arrow-head">▶</span></div>
-            <div className="diag-node mm">MockMesh</div>
-            <div className="diag-arrow strike"><span className="diag-label">blocked ✕</span><div className="diag-line dashed"/><span className="arrow-head muted">▶</span></div>
-            <div className="diag-node cloud muted">Cloud / APIs</div>
-          </div>
         </div>
       </section>
 

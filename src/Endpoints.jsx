@@ -169,33 +169,64 @@ export function EndpointsPage() {
         <div className="ep-content">
           <div className="ep-external-intro">
             <p>
-              MockMesh intercepts <strong>any</strong> third-party HTTP endpoint via URL prefix matching.
-              Add entries to <code>external.json</code> — no code changes, works with any library using requests or urllib3.
+              MockMesh intercepts <strong>any</strong> HTTP endpoint via glob-pattern and substring URL matching.
+              Add rules to <code>http.json</code> — no code changes, works with any library using <code>requests</code> or <code>urllib</code>.
+              Ships with built-in catch-all rules per HTTP method, so even unmatched URLs return realistic responses.
             </p>
           </div>
           <div className="ep-ext-config">
-            <div className="section-label">// external.json</div>
+            <div className="section-label">// http.json</div>
             <pre className="feat-code">{`{
-  "external": [
+  "rules": [
     {
-      "sub_component": "https://api.stripe.com",
-      "response": { "id": "ch_mock_001", "status": "succeeded", "amount": 2000 }
+      "description": "Stripe charges — glob pattern",
+      "match": { "url": "https://api.stripe.com/v1/charges*", "method": "POST" },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "body": { "id": "ch_mock_001", "status": "succeeded", "amount": 2000 }
+      }
     },
     {
-      "sub_component": "https://api.sendgrid.com/v3/mail",
-      "status_code": 202,
-      "response": {}
+      "description": "SendGrid send mail",
+      "match": { "url": "https://api.sendgrid.com/v3/mail*", "method": "POST" },
+      "response": { "status": 202, "headers": {}, "body": {} }
     },
     {
-      "sub_component": "https://hooks.slack.com",
-      "response": { "ok": true }
+      "description": "All Slack webhooks — url_contains",
+      "match": { "url_contains": "hooks.slack.com", "method": "*" },
+      "response": {
+        "status": 200,
+        "body": { "ok": true }
+      }
     },
     {
-      "sub_component": "https://oauth2.googleapis.com/token",
-      "response": { "access_token": "mock_token", "expires_in": 3599, "token_type": "Bearer" }
+      "description": "Google OAuth token exchange",
+      "match": { "url": "*oauth2.googleapis.com/token*", "method": "POST" },
+      "response": {
+        "status": 200,
+        "body": { "access_token": "mock_token", "expires_in": 3599, "token_type": "Bearer" }
+      }
     }
   ]
 }`}</pre>
+          </div>
+          <div className="section-label" style={{paddingLeft:"2rem",marginTop:"3rem"}}>// built-in defaults</div>
+          <div className="ep-streaming-detail" style={{marginBottom:"2rem"}}>
+            <div className="stream-detail-grid">
+              {[
+                {icon:"📋",title:"CRUD /v1/users",desc:"GET → 200, POST → 201 with mock ID, PUT → 200, DELETE → 204. Ready out of the box."},
+                {icon:"❤️",title:"/health endpoint",desc:'Returns { "status": "ok", "mocked": true } — 200 by default.'},
+                {icon:"📊",title:"/metrics endpoint",desc:'Returns { "requests_per_sec": 42.5, "latency_ms": 12 } — 200 by default.'},
+                {icon:"💳",title:"/payments endpoint",desc:'POST returns { "id": "pay_mock_001", "status": "succeeded" } — 200 by default.'},
+                {icon:"🔄",title:"Catch-all per method",desc:"GET → 200, POST → 201, PUT → 200, PATCH → 200, DELETE → 204. Every unmatched URL still gets a realistic response."},
+              ].map(d => (
+                <div key={d.title} className="stream-detail-card">
+                  <span className="stream-detail-icon">{d.icon}</span>
+                  <div><strong>{d.title}</strong><p>{d.desc}</p></div>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="section-label" style={{paddingLeft:"2rem",marginTop:"3rem"}}>// popular examples</div>
           <div className="ext-examples-grid">
@@ -211,10 +242,11 @@ export function EndpointsPage() {
             <div className="section-label">// how URL matching works</div>
             <div className="how-ext-grid">
               {[
-                {label:"Prefix matching",desc:'"https://api.stripe.com" matches all Stripe endpoints — charges, customers, refunds, webhooks.'},
-                {label:"Exact path",desc:'Use a full path "https://api.example.com/v1/charges" to match only that specific endpoint.'},
-                {label:"Method-agnostic",desc:"URL rules match GET, POST, PUT, DELETE equally — one rule covers all verbs on a prefix."},
-                {label:"First match wins",desc:"Rules are evaluated in config order. Put specific rules before broader prefix rules."},
+                {label:"Glob patterns (fnmatch)",desc:'"*/v1/charges*" matches any host with that path. Supports *, ?, and [seq] wildcards via Python fnmatch.'},
+                {label:"Substring matching",desc:'Use "url_contains": "stripe.com" to match any URL containing that substring — no wildcards needed.'},
+                {label:"Per-method rules",desc:'Set "method": "POST" to match only POST, or "*" to match all verbs. Different status codes per method (201 for POST, 204 for DELETE).'},
+                {label:"First match wins",desc:"Rules evaluated top-to-bottom: user overrides → folder overrides → built-in defaults → generic fallback."},
+                {label:"4-tier resolution",desc:"User config (config_path) → folder overrides (.mockmesh/http.json) → built-in defaults → generic fallback { mocked: true }."},
               ].map(r => (
                 <div key={r.label} className="how-ext-item">
                   <strong>{r.label}</strong>

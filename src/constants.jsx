@@ -71,16 +71,16 @@ export const STREAMING_SVCS = [
 ];
 
 export const EXT_EXAMPLES = [
-  {name:"Stripe",    url:"https://api.stripe.com",           ex:'{ "id": "ch_mock", "status": "succeeded" }'},
-  {name:"SendGrid",  url:"https://api.sendgrid.com",         ex:"status_code: 202, response: {}"},
-  {name:"Twilio",    url:"https://api.twilio.com",           ex:'{ "sid": "SM_mock", "status": "sent" }'},
-  {name:"Slack",     url:"https://hooks.slack.com",          ex:'{ "ok": true }'},
-  {name:"GitHub",    url:"https://api.github.com",           ex:'{ "id": 1, "full_name": "mock/repo" }'},
-  {name:"Google OAuth",url:"https://oauth2.googleapis.com", ex:'{ "access_token": "mock_tok", "expires_in": 3599 }'},
-  {name:"Okta",      url:"https://your-org.okta.com",        ex:'{ "access_token": "mock_tok" }'},
-  {name:"PagerDuty", url:"https://api.pagerduty.com",        ex:'{ "incident": { "id": "mock_id" } }'},
-  {name:"Datadog",   url:"https://api.datadoghq.com",        ex:'{ "status": "ok" }'},
-  {name:"HubSpot",   url:"https://api.hubapi.com",           ex:'{ "id": "mock_contact_1" }'},
+  {name:"Stripe",      url:"*/api.stripe.com/*",              ex:'{ "id": "ch_mock", "status": "succeeded" }'},
+  {name:"SendGrid",    url:"*/api.sendgrid.com/v3/mail*",     ex:"status: 202, body: {}"},
+  {name:"Twilio",      url:"*/api.twilio.com/*",              ex:'{ "sid": "SM_mock", "status": "sent" }'},
+  {name:"Slack",       url:'url_contains: "hooks.slack.com"', ex:'{ "ok": true }'},
+  {name:"GitHub",      url:"*/api.github.com/*",              ex:'{ "id": 1, "full_name": "mock/repo" }'},
+  {name:"Google OAuth", url:"*oauth2.googleapis.com/token*",  ex:'{ "access_token": "mock_tok", "expires_in": 3599 }'},
+  {name:"Okta",        url:'url_contains: "okta.com"',        ex:'{ "access_token": "mock_tok" }'},
+  {name:"PagerDuty",   url:"*/api.pagerduty.com/*",           ex:'{ "incident": { "id": "mock_id" } }'},
+  {name:"Datadog",     url:'url_contains: "datadoghq.com"',   ex:'{ "status": "ok" }'},
+  {name:"HubSpot",     url:"*/api.hubapi.com/*",              ex:'{ "id": "mock_contact_1" }'},
 ];
 
 export const ST_COLORS = {
