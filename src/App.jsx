@@ -1,50 +1,60 @@
-import { useState, useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Nav } from "./Utilities/Nav";
 import { HomePage } from "./Home";
-import { EndpointsPage } from "./Endpoints";
-import { InstallPage } from "./Install";
-import { DocsPage } from "./Docs";
 import { Footer } from "./Footer";
 import "./styles.css";
 
+const EndpointsPage = lazy(() => import("./Endpoints").then(m => ({ default: m.EndpointsPage })));
+const InstallPage   = lazy(() => import("./Install").then(m => ({ default: m.InstallPage })));
+const DocsPage      = lazy(() => import("./Docs").then(m => ({ default: m.DocsPage })));
+
 const PAGE_META = {
-  home: {
+  "/": {
     title: "MockMesh — Mock AWS, Azure & Cloud APIs Locally | Free Python Library",
     desc:  "Intercept boto3, azure-sdk, Kafka, RabbitMQ and HTTP calls at transport level. 40+ cloud services mocked locally. Zero cost, zero credentials. pip install mockmesh.",
   },
-  services: {
+  "/services": {
     title: "MockMesh Services — 40+ AWS, Azure, Kafka & HTTP Endpoints Mocked Locally",
     desc:  "Browse all mocked services: S3, DynamoDB, SQS, SNS, Cosmos DB, Blob Storage, Service Bus, Key Vault, ElastiCache, Kafka, RabbitMQ and any HTTP endpoint.",
   },
-  install: {
+  "/install": {
     title: "MockMesh Installation Guide — pip install mockmesh | Python Mock Cloud",
     desc:  "Install MockMesh in under 2 minutes. Complete guide: pip install, initialize(), responses_path folder overrides, pytest integration, and all API parameters.",
   },
-  docs: {
+  "/docs": {
     title: "MockMesh Documentation — Architecture, Providers, Config & Plugin Guide",
     desc:  "Complete MockMesh documentation: architecture internals, provider guides for AWS, Azure, GCP, SQL, MongoDB, Redis, Kafka & RabbitMQ, custom config, fallback modes, plugins, and troubleshooting.",
   },
 };
 
-export default function App() {
-  const [page, setPage] = useState("home");
-
+function ScrollToTop() {
+  const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
-    const meta = PAGE_META[page] || PAGE_META.home;
+    const meta = PAGE_META[pathname] || PAGE_META["/"];
     document.title = meta.title;
     const descEl = document.querySelector('meta[name="description"]');
     if (descEl) descEl.setAttribute("content", meta.desc);
-  }, [page]);
+  }, [pathname]);
+  return null;
+}
 
+export default function App() {
   return (
     <div className="app">
-      <Nav active={page} setActive={setPage}/>
-      {page==="home"     && <HomePage setActive={setPage}/>}
-      {page==="services" && <EndpointsPage/>}
-      {page==="install"  && <InstallPage/>}
-      {page==="docs"     && <DocsPage/>}
-      <Footer setActive={setPage}/>
+      <ScrollToTop />
+      <Nav />
+      <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/services" element={<EndpointsPage />} />
+          <Route path="/install" element={<InstallPage />} />
+          <Route path="/docs" element={<DocsPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+      </Suspense>
+      <Footer />
     </div>
   );
 }

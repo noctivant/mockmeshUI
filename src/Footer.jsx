@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import "./styles.css";
 
-export function Footer({ setActive }) {
+export function Footer() {
   return (
     <footer className="footer" aria-label="Site footer">
       <div className="footer-inner">
@@ -24,8 +25,8 @@ export function Footer({ setActive }) {
           <div className="footer-col">
             <div className="footer-col-title">Navigate</div>
             <nav className="footer-nav" aria-label="Footer navigation">
-              {[["home","Home"],["services","Services"],["docs","Docs"],["install","Install"]].map(([pg,label]) => (
-                <button key={pg} className="footer-link" onClick={() => setActive(pg)}>{label}</button>
+              {[["/","Home"],["/services","Services"],["/docs","Docs"],["/install","Install"]].map(([to,label]) => (
+                <Link key={to} to={to} className="footer-link">{label}</Link>
               ))}
             </nav>
           </div>

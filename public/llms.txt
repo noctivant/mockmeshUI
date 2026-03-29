@@ -1,0 +1,38 @@
+# MockMesh
+
+> MockMesh is an open-source Python library that intercepts AWS, Azure, GCP, SQL, MongoDB, Redis, Kafka, RabbitMQ and HTTP calls at transport level, providing real stateful local mocking of 60+ cloud services with zero credentials and zero cost.
+
+## Installation
+pip install mockmesh
+
+## Quick Start
+```python
+import mockmesh
+mockmesh.initialize()
+
+# All boto3, azure-sdk, google-cloud, pymongo, redis, SQL, Kafka, and HTTP calls
+# are now intercepted locally — no cloud credentials needed.
+```
+
+## Pages
+- [Home](https://mockmesh.dev/): Overview, features, and comparison with LocalStack and Moto
+- [Services](https://mockmesh.dev/services): All 60+ mocked services and operations (AWS, Azure, GCP, SQL, MongoDB, Redis, Kafka, RabbitMQ, HTTP)
+- [Install](https://mockmesh.dev/install): Installation guide, pytest integration, API parameters
+- [Docs](https://mockmesh.dev/docs): Architecture, providers, config, fallback modes, plugins, troubleshooting
+
+## Key Features
+- Mock 17 AWS services (S3, DynamoDB, SQS, SNS, SecretsManager, SSM, RDS, ElastiCache, Lambda)
+- Mock 13 Azure services (Blob Storage, Cosmos DB, Service Bus, Key Vault, Event Hubs)
+- Mock 8 GCP services (Cloud Storage, Firestore, Pub/Sub, Secret Manager, BigQuery, Spanner)
+- Mock SQL databases via psycopg2, pymysql, asyncpg, aiomysql with SQLite backend
+- Mock MongoDB (pymongo) and Redis (redis-py) with in-memory stores
+- Mock Kafka (confluent-kafka, kafka-python) and RabbitMQ (pika)
+- Mock any HTTP endpoint via requests and urllib interceptors
+- Real stateful file-backed storage
+- Zero Docker dependency — pure Python
+- pytest integration with session and per-test isolation
+
+## Links
+- [GitHub](https://github.com/noctivant/mockmesh)
+- [PyPI](https://pypi.org/project/mockmesh/)
+- License: BSL-1.1

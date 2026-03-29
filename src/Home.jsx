@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import "./styles.css";
 import { GlitchText } from "./Utilities/GlitchText";
 import { ParticleCanvas } from "./Utilities/ParticleCanvas";
 import { COMPARISON_ROWS } from "./constants";
 
-export function HomePage({ setActive }) {
+export function HomePage() {
   return (
     <div className="page home-page">
       <ParticleCanvas/>
@@ -19,8 +20,8 @@ export function HomePage({ setActive }) {
           <div className="diag-node cloud muted">Cloud / APIs</div>
         </div>
         <div className="hero-actions">
-          <button className="btn-primary" onClick={() => setActive("install")}><span>Start Free</span><span className="btn-arrow">→</span></button>
-          <button className="btn-ghost" onClick={() => setActive("services")}>Browse Services</button>
+          <Link to="/install" className="btn-primary"><span>Start Free</span><span className="btn-arrow">→</span></Link>
+          <Link to="/services" className="btn-ghost">Browse Services</Link>
         </div>
       </section>
 

@@ -1,7 +1,36 @@
+# AI Search Bots (allow for search visibility)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Training-only bots (block)
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Default
 User-agent: *
 Allow: /
 
-# Sitemap
 Sitemap: https://mockmesh.dev/sitemap.xml
 
 # Block build artefacts
