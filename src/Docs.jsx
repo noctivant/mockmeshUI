@@ -17,7 +17,7 @@ export function DocsPage() {
     <div className="page docs-page">
       <div className="page-hero">
         <div className="section-label">// documentation</div>
-        <h1 className="page-title">Everything you need to <span className="highlight">know</span></h1>
+        <h1 className="page-title">MockMesh Documentation — <span className="highlight">Configuration, Providers & API</span></h1>
         <p className="page-desc">Provider guides, configuration reference, fallback modes, and plugin development.</p>
       </div>
 
@@ -31,11 +31,11 @@ export function DocsPage() {
         </aside>
 
         <div className="docs-content">
-          {section === "getting-started" && <GettingStartedSection/>}
-          {section === "providers" && <ProvidersSection/>}
-          {section === "custom-config" && <CustomConfigSection/>}
-          {section === "fallback" && <FallbackSection/>}
-          {section === "plugins" && <PluginsSection/>}
+          <div style={{ display: section === "getting-started" ? "block" : "none" }}><GettingStartedSection/></div>
+          <div style={{ display: section === "providers" ? "block" : "none" }}><ProvidersSection/></div>
+          <div style={{ display: section === "custom-config" ? "block" : "none" }}><CustomConfigSection/></div>
+          <div style={{ display: section === "fallback" ? "block" : "none" }}><FallbackSection/></div>
+          <div style={{ display: section === "plugins" ? "block" : "none" }}><PluginsSection/></div>
         </div>
       </div>
     </div>

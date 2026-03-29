@@ -19,6 +19,9 @@ export function HomePage() {
           <div className="diag-arrow strike"><span className="diag-label">blocked ✕</span><div className="diag-line dashed"/><span className="arrow-head muted">▶</span></div>
           <div className="diag-node cloud muted">Cloud / APIs</div>
         </div>
+        <p className="hero-subtitle">
+          An open-source Python library that intercepts boto3, azure-sdk, google-cloud, pymongo, redis, SQL drivers, Kafka, RabbitMQ and HTTP calls at the transport level. Mock 60+ cloud services locally with zero credentials, zero Docker, and zero cost.
+        </p>
         <div className="hero-actions">
           <Link to="/install" className="btn-primary"><span>Start Free</span><span className="btn-arrow">→</span></Link>
           <Link to="/services" className="btn-ghost">Browse Services</Link>
@@ -62,6 +65,27 @@ export function HomePage() {
                 <div key={i} className={`comp-val ${i===0?"comp-mm-val":""} ${v==="✓"?"good":v==="✗"?"bad":"partial"}`}>{v}</div>
               ))}
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ — visible content matching schema */}
+      <section className="home-faq">
+        <div className="section-label">// frequently asked questions</div>
+        <h2 className="section-title">Common <span className="highlight">Questions</span></h2>
+        <div className="faq-list">
+          {[
+            {q: "What is MockMesh?", a: "MockMesh is an open-source Python library that intercepts cloud API calls from AWS (boto3), Azure (azure-sdk), GCP (google-cloud), SQL databases, MongoDB, Redis, Kafka, RabbitMQ, and HTTP endpoints at the transport level. It provides real stateful local mocking of 60+ cloud services with zero credentials and zero cost. Install with pip install mockmesh."},
+            {q: "What is the difference between MockMesh and LocalStack?", a: "LocalStack runs actual AWS service emulators in Docker containers. MockMesh intercepts at the Python SDK transport layer — no Docker required. MockMesh also supports Azure, GCP, SQL databases, MongoDB, Redis, Kafka, RabbitMQ and any HTTP endpoint in the same library, with a 4-tier response resolution system, auto-detection, fallback modes, and real file-backed stateful storage."},
+            {q: "How does MockMesh compare to Moto?", a: "Moto is an AWS-only mocking library that requires decorators or context managers on each test. MockMesh intercepts at the transport layer with a single initialize() call — no decorators needed. MockMesh also goes beyond AWS to support Azure, GCP, SQL databases, MongoDB, Redis, Kafka, RabbitMQ, and HTTP endpoints in one unified library with real stateful storage."},
+            {q: "Does MockMesh require Docker?", a: "No. MockMesh is a pure Python library with zero Docker dependency. Unlike LocalStack or other emulator-based tools, MockMesh intercepts SDK calls at the transport layer within your Python process. Just pip install mockmesh and call initialize() — it runs anywhere Python runs, including CI/CD pipelines, notebooks, and serverless environments."},
+            {q: "How do I use MockMesh with pytest?", a: "MockMesh provides pytest integration with session-scoped and per-test isolation. Add a conftest.py fixture that calls mockmesh.initialize() with your desired configuration. Session scope shares state across tests for integration scenarios, while per-test scope gives each test a clean slate."},
+            {q: "Is MockMesh stateful?", a: "Yes. Storage-backed operations (S3, DynamoDB, SQS, GCS, Cosmos DB, Service Bus, Key Vault, SSM, SecretsManager, ElastiCache) use real local file-backed stores. MongoDB and Redis use in-memory stores. SQL databases use a SQLite backend. Your application cannot distinguish this from the real cloud."},
+          ].map(faq => (
+            <details key={faq.q} className="faq-item">
+              <summary className="faq-question">{faq.q}</summary>
+              <p className="faq-answer">{faq.a}</p>
+            </details>
           ))}
         </div>
       </section>

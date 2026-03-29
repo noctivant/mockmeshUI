@@ -96,9 +96,14 @@ async function prerender() {
           `<meta name="description" content="${pageDesc.replace(/"/g, '&quot;')}" />`
         );
       }
+      const canonicalUrl = `${SITE_URL}${route}/`;
       html = html.replace(
         /<link rel="canonical" href="[^"]*" \/>/,
-        `<link rel="canonical" href="${SITE_URL}${route}" />`
+        `<link rel="canonical" href="${canonicalUrl}" />`
+      );
+      html = html.replace(
+        /<meta property="og:url"\s+content="[^"]*" \/>/,
+        `<meta property="og:url"         content="${canonicalUrl}" />`
       );
     }
 

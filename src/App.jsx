@@ -9,13 +9,15 @@ const EndpointsPage = lazy(() => import("./Endpoints").then(m => ({ default: m.E
 const InstallPage   = lazy(() => import("./Install").then(m => ({ default: m.InstallPage })));
 const DocsPage      = lazy(() => import("./Docs").then(m => ({ default: m.DocsPage })));
 
+const SITE_URL = "https://mockmesh.netlify.app";
+
 const PAGE_META = {
   "/": {
     title: "MockMesh — Mock AWS, Azure & Cloud APIs Locally | Free Python Library",
-    desc:  "Intercept boto3, azure-sdk, Kafka, RabbitMQ and HTTP calls at transport level. 40+ cloud services mocked locally. Zero cost, zero credentials. pip install mockmesh.",
+    desc:  "Intercept boto3, azure-sdk, Kafka, RabbitMQ and HTTP calls at transport level. 60+ cloud services mocked locally. Zero cost, zero credentials. pip install mockmesh.",
   },
   "/services": {
-    title: "MockMesh Services — 40+ AWS, Azure, Kafka & HTTP Endpoints Mocked Locally",
+    title: "MockMesh Services — 60+ AWS, Azure, Kafka & HTTP Endpoints Mocked Locally",
     desc:  "Browse all mocked services: S3, DynamoDB, SQS, SNS, Cosmos DB, Blob Storage, Service Bus, Key Vault, ElastiCache, Kafka, RabbitMQ and any HTTP endpoint.",
   },
   "/install": {
@@ -36,6 +38,16 @@ function ScrollToTop() {
     document.title = meta.title;
     const descEl = document.querySelector('meta[name="description"]');
     if (descEl) descEl.setAttribute("content", meta.desc);
+
+    const pageUrl = pathname === "/" ? `${SITE_URL}/` : `${SITE_URL}${pathname}/`;
+    const canonEl = document.querySelector('link[rel="canonical"]');
+    if (canonEl) canonEl.setAttribute("href", pageUrl);
+    const ogUrlEl = document.querySelector('meta[property="og:url"]');
+    if (ogUrlEl) ogUrlEl.setAttribute("content", pageUrl);
+    const ogTitleEl = document.querySelector('meta[property="og:title"]');
+    if (ogTitleEl) ogTitleEl.setAttribute("content", meta.title);
+    const ogDescEl = document.querySelector('meta[property="og:description"]');
+    if (ogDescEl) ogDescEl.setAttribute("content", meta.desc);
   }, [pathname]);
   return null;
 }

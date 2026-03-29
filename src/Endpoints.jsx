@@ -40,26 +40,53 @@ export function EndpointsPage() {
         </div>
       </div>
 
-      {/* ── AWS / Azure / GCP grids ── */}
-      {(cloud === "aws" || cloud === "azure" || cloud === "gcp") && (
-        <div className="ep-content">
-          <div className="ep-legend">
-            {Object.values(ST_COLORS).map(st => (
-              <span key={st.label} className="legend-item">
-                <span className="legend-dot" style={{background:st.color}}/>
-                {st.label}
-              </span>
-            ))}
-          </div>
-          <div className="svc-grid">
-            {(cloud==="aws" ? AWS_SVCS : cloud==="azure" ? AZURE_SVCS : GCP_SVCS).map(svc => <ServiceCard key={svc.name} svc={svc}/>)}
-          </div>
+      {/* ── AWS grid ── */}
+      <div className="ep-content" style={{ display: cloud === "aws" ? "block" : "none" }}>
+        <div className="ep-legend">
+          {Object.values(ST_COLORS).map(st => (
+            <span key={st.label} className="legend-item">
+              <span className="legend-dot" style={{background:st.color}}/>
+              {st.label}
+            </span>
+          ))}
         </div>
-      )}
+        <div className="svc-grid">
+          {AWS_SVCS.map(svc => <ServiceCard key={svc.name} svc={svc}/>)}
+        </div>
+      </div>
+
+      {/* ── Azure grid ── */}
+      <div className="ep-content" style={{ display: cloud === "azure" ? "block" : "none" }}>
+        <div className="ep-legend">
+          {Object.values(ST_COLORS).map(st => (
+            <span key={st.label} className="legend-item">
+              <span className="legend-dot" style={{background:st.color}}/>
+              {st.label}
+            </span>
+          ))}
+        </div>
+        <div className="svc-grid">
+          {AZURE_SVCS.map(svc => <ServiceCard key={svc.name} svc={svc}/>)}
+        </div>
+      </div>
+
+      {/* ── GCP grid ── */}
+      <div className="ep-content" style={{ display: cloud === "gcp" ? "block" : "none" }}>
+        <div className="ep-legend">
+          {Object.values(ST_COLORS).map(st => (
+            <span key={st.label} className="legend-item">
+              <span className="legend-dot" style={{background:st.color}}/>
+              {st.label}
+            </span>
+          ))}
+        </div>
+        <div className="svc-grid">
+          {GCP_SVCS.map(svc => <ServiceCard key={svc.name} svc={svc}/>)}
+        </div>
+      </div>
 
       {/* ── SQL tab ── */}
-      {cloud === "sql" && (
-        <div className="ep-content">
+      <div className="ep-content" style={{ display: cloud === "sql" ? "block" : "none" }}>
           <div className="ep-streaming-intro">
             <p>
               MockMesh intercepts <strong>6 Python SQL drivers</strong> at the <code>connect()</code> level,
@@ -89,12 +116,10 @@ export function EndpointsPage() {
               ))}
             </div>
           </div>
-        </div>
-      )}
+      </div>
 
       {/* ── NoSQL tab ── */}
-      {cloud === "nosql" && (
-        <div className="ep-content">
+      <div className="ep-content" style={{ display: cloud === "nosql" ? "block" : "none" }}>
           <div className="ep-streaming-intro">
             <p>
               MockMesh intercepts <strong>pymongo</strong> and <strong>redis-py</strong> at the client level.
@@ -124,12 +149,10 @@ export function EndpointsPage() {
               ))}
             </div>
           </div>
-        </div>
-      )}
+      </div>
 
       {/* ── Streaming tab ── */}
-      {cloud === "streaming" && (
-        <div className="ep-content">
+      <div className="ep-content" style={{ display: cloud === "streaming" ? "block" : "none" }}>
           <div className="ep-streaming-intro">
             <p>
               MockMesh intercepts all major <strong>queue, pub/sub, and event streaming</strong> protocols
@@ -161,12 +184,10 @@ export function EndpointsPage() {
               ))}
             </div>
           </div>
-        </div>
-      )}
+      </div>
 
       {/* ── HTTP Endpoints tab ── */}
-      {cloud === "external" && (
-        <div className="ep-content">
+      <div className="ep-content" style={{ display: cloud === "external" ? "block" : "none" }}>
           <div className="ep-external-intro">
             <p>
               MockMesh intercepts <strong>any</strong> HTTP endpoint via glob-pattern and substring URL matching.
@@ -255,8 +276,7 @@ export function EndpointsPage() {
               ))}
             </div>
           </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -204,16 +204,28 @@
     }
     </script>
 
+    <!-- ── Structured Data — WebSite ───────────────────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MockMesh",
+      "url": "https://mockmesh.netlify.app/",
+      "description": "Mock AWS, Azure, GCP & 60+ cloud services locally with a single Python library.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Noctivant"
+      }
+    }
+    </script>
+
     <!-- ── Structured Data — BreadcrumbList ─────────────────────────────── -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "MockMesh",  "item": "https://mockmesh.netlify.app/" },
-        { "@type": "ListItem", "position": 2, "name": "Services",  "item": "https://mockmesh.netlify.app/services" },
-        { "@type": "ListItem", "position": 3, "name": "Docs",      "item": "https://mockmesh.netlify.app/docs" },
-        { "@type": "ListItem", "position": 4, "name": "Install",   "item": "https://mockmesh.netlify.app/install" }
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mockmesh.netlify.app/" }
       ]
     }
     </script>
