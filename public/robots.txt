@@ -31,8 +31,4 @@ Disallow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://mockmesh.dev/sitemap.xml
-
-# Block build artefacts
-Disallow: /dist/
-Disallow: /.vite/
+Sitemap: https://mockmesh.netlify.app/sitemap.xml

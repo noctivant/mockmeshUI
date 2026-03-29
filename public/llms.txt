@@ -15,10 +15,10 @@ mockmesh.initialize()
 ```
 
 ## Pages
-- [Home](https://mockmesh.dev/): Overview, features, and comparison with LocalStack and Moto
-- [Services](https://mockmesh.dev/services): All 60+ mocked services and operations (AWS, Azure, GCP, SQL, MongoDB, Redis, Kafka, RabbitMQ, HTTP)
-- [Install](https://mockmesh.dev/install): Installation guide, pytest integration, API parameters
-- [Docs](https://mockmesh.dev/docs): Architecture, providers, config, fallback modes, plugins, troubleshooting
+- [Home](https://mockmesh.netlify.app/): Overview, features, and comparison with LocalStack and Moto
+- [Services](https://mockmesh.netlify.app/services): All 60+ mocked services and operations
+- [Install](https://mockmesh.netlify.app/install): Installation guide, pytest integration, API parameters
+- [Docs](https://mockmesh.netlify.app/docs): Architecture, providers, config, fallback modes, plugins
 
 ## Key Features
 - Mock 17 AWS services (S3, DynamoDB, SQS, SNS, SecretsManager, SSM, RDS, ElastiCache, Lambda)
