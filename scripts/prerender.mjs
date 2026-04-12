@@ -10,7 +10,16 @@ const DIST = join(__dirname, '..', 'dist');
 const PORT = 4173;
 const SITE_URL = 'https://mockmesh.netlify.app';
 
-const ROUTES = ['/', '/services', '/install', '/docs'];
+const ROUTES = ['/', '/services', '/install', '/docs', '/compare'];
+
+// Wait for route-specific content to render (lazy-loaded components)
+const ROUTE_SELECTORS = {
+  '/':         '.home-page',
+  '/services': '.endpoints-page',
+  '/install':  '.install-page',
+  '/docs':     '.docs-page',
+  '/compare':  '.compare-page',
+};
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -58,21 +67,25 @@ async function prerender() {
   const server = await startServer();
   const browser = await launch({ headless: true });
 
+  // Save the original template before any route overwrites it
+  const originalHtml = readFileSync(join(DIST, 'index.html'), 'utf-8');
+
   for (const route of ROUTES) {
     const url = `http://localhost:${PORT}${route}`;
     console.log(`  Rendering ${route} ...`);
 
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
-    await page.waitForSelector('.app', { timeout: 10000 });
+    const selector = ROUTE_SELECTORS[route] || '.app';
+    await page.waitForSelector(selector, { timeout: 15000 });
 
     // Get rendered HTML inside #root
     const renderedContent = await page.evaluate(() => {
       return document.getElementById('root').innerHTML;
     });
 
-    // Read the built index.html
-    const indexHtml = readFileSync(join(DIST, 'index.html'), 'utf-8');
+    // Use the original template (before any route overwrites it)
+    const indexHtml = originalHtml;
 
     // Get page-specific title and description
     const pageTitle = await page.title();

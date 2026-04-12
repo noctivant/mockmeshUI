@@ -16,6 +16,7 @@ export function Nav() {
   const pages = [
     ["/", "Home"],
     ["/services", "Services"],
+    ["/compare", "Compare"],
     ["/docs", "Docs"],
     ["/install", "Install"],
   ];

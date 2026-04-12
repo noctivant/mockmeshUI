@@ -8,6 +8,7 @@ import "./styles.css";
 const EndpointsPage = lazy(() => import("./Endpoints").then(m => ({ default: m.EndpointsPage })));
 const InstallPage   = lazy(() => import("./Install").then(m => ({ default: m.InstallPage })));
 const DocsPage      = lazy(() => import("./Docs").then(m => ({ default: m.DocsPage })));
+const ComparePage   = lazy(() => import("./Compare").then(m => ({ default: m.ComparePage })));
 
 const SITE_URL = "https://mockmesh.netlify.app";
 
@@ -27,6 +28,10 @@ const PAGE_META = {
   "/docs": {
     title: "MockMesh Documentation — Architecture, Providers, Config & Plugin Guide",
     desc:  "Complete MockMesh documentation: architecture internals, provider guides for AWS, Azure, GCP, SQL, MongoDB, Redis, Kafka & RabbitMQ, custom config, fallback modes, plugins, and troubleshooting.",
+  },
+  "/compare": {
+    title: "MockMesh vs LocalStack, Moto & Testcontainers — Comparison",
+    desc:  "Side-by-side comparison of MockMesh against LocalStack, Moto, Testcontainers and real cloud. No Docker, no credentials, multi-cloud — see which mock cloud library fits your stack.",
   },
 };
 
@@ -63,6 +68,7 @@ export default function App() {
           <Route path="/services" element={<EndpointsPage />} />
           <Route path="/install" element={<InstallPage />} />
           <Route path="/docs" element={<DocsPage />} />
+          <Route path="/compare" element={<ComparePage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
       </Suspense>

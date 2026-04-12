@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 import { GlitchText } from "./Utilities/GlitchText";
 import { ParticleCanvas } from "./Utilities/ParticleCanvas";
-import { COMPARISON_ROWS } from "./constants";
+import { CodeBlock } from "./Utilities/CodeBlock";
 
 export function HomePage() {
   return (
@@ -46,26 +46,30 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Comparison — centered */}
-      <section className="home-comparison">
-        <div className="section-label">// comparison</div>
-        <h2 className="section-title">MockMesh vs. <span className="highlight">Alternatives</span></h2>
-        <div className="comparison-table">
-          <div className="comp-head">
-            <div className="comp-cap-head">Capability</div>
-            <div className="comp-mm">MockMesh</div>
-            <div className="comp-col-head">LocalStack</div>
-            <div className="comp-col-head">Moto</div>
-            <div className="comp-col-head">Real Cloud</div>
+      {/* Quick Start — copy-pasteable example */}
+      <section className="quick-start">
+        <div className="section-label">// get started in 30 seconds</div>
+        <h2 className="section-title">Three lines to <span className="highlight">mock everything</span></h2>
+        <div className="quick-start-grid">
+          <div className="quick-start-step">
+            <div className="step-number">1</div>
+            <h3>Install</h3>
+            <CodeBlock code="pip install mockmesh" lang="bash" />
           </div>
-          {COMPARISON_ROWS.map(([cap,...vals]) => (
-            <div className="comp-row" key={cap}>
-              <div className="comp-cap">{cap}</div>
-              {vals.map((v,i) => (
-                <div key={i} className={`comp-val ${i===0?"comp-mm-val":""} ${v==="✓"?"good":v==="✗"?"bad":"partial"}`}>{v}</div>
-              ))}
-            </div>
-          ))}
+          <div className="quick-start-step">
+            <div className="step-number">2</div>
+            <h3>Initialize</h3>
+            <CodeBlock code={`import mockmesh\nmockmesh.initialize()`} lang="python" />
+          </div>
+          <div className="quick-start-step">
+            <div className="step-number">3</div>
+            <h3>Use your SDKs normally</h3>
+            <CodeBlock code={`import boto3\n\ns3 = boto3.client("s3", region_name="us-east-1")\ns3.put_object(Bucket="my-bucket", Key="hello.txt", Body=b"Hello")\nobj = s3.get_object(Bucket="my-bucket", Key="hello.txt")\nprint(obj["Body"].read())  # b"Hello"`} lang="python" />
+          </div>
+        </div>
+        <div className="quick-start-cta">
+          <Link to="/install" className="btn-primary"><span>Full Installation Guide</span><span className="btn-arrow">→</span></Link>
+          <Link to="/docs" className="btn-ghost">Read the Docs</Link>
         </div>
       </section>
 
